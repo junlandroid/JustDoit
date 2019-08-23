@@ -54,9 +54,11 @@ class ClockView constructor(context: Context, attr: AttributeSet?, defStyleAttr:
             var degree = i.toString()
             if (i == 0 || i == 6 || i == 12 || i == 18) {
                 drawLongKeDu(canvas, 50)
+                mKeDuPaint.textSize = 35f
                 drawKeduText(canvas, degree , 80)
             } else {
                 drawLongKeDu(canvas, 25)
+                mKeDuPaint.textSize = 25f
                 drawKeduText(canvas, degree , 60)
             }
             canvas.rotate(15f, (width / 2).toFloat(), (height / 2).toFloat())
@@ -64,6 +66,8 @@ class ClockView constructor(context: Context, attr: AttributeSet?, defStyleAttr:
     }
 
     private fun drawKeduText(canvas: Canvas, degree: String , keDuSize: Int) {
+        mKeDuPaint.strokeWidth = 1f
+        mKeDuPaint.style = Paint.Style.FILL
         canvas.drawText(
             degree,
             width / 2 - mKeDuPaint.measureText(degree) / 2,
