@@ -5,6 +5,8 @@ import com.purang.justdoit.java.Customer
 import com.purang.justdoit.java.Friut
 import com.purang.justdoit.java.House
 import org.junit.Test
+import java.lang.ref.WeakReference
+import java.util.concurrent.atomic.AtomicInteger
 
 class KtText {
 
@@ -25,15 +27,82 @@ class KtText {
 
     @Test
     fun sparseTest() {
+        val person = Person("Hello", 23)
+        val weakRefPerson = WeakReference<Person>(person)
+        var i = 0
+        while (true) {
+            i++
+            if (weakRefPerson.get() != null) {
+                println("person 还未回收 i:$i")
+            } else {
+                println("person已回收")
+                break
+            }
+        }
+    }
 
-        val sparseArray = SparseArray<Friut>()
-        sparseArray.put(1, Friut(100.00))
-        sparseArray.put(2, Friut(200.00))
-        sparseArray.put(3, Friut(300.00))
-        sparseArray.put(1, Friut(100.00))
-        println("sparseArray size:" + sparseArray.size())
-        println("key=1 price=" + sparseArray.get(1).price)
-        println("key=2 price=" + sparseArray.get(2).price)
-        println("key=3 price=" + sparseArray.get(3).price)
+//    var tmp = 0
+    var tmp = AtomicInteger(2)
+    @Test
+    fun atomicIntegerTest() {
+
+        val thread1 = object : Thread(){
+            override fun run() {
+                super.run()
+                for (i in 0 until 1000000) {
+//                    tmp++
+                    tmp.incrementAndGet()
+                }
+            }
+        }
+
+        val thread2 = object : Thread(){
+            override fun run() {
+                super.run()
+                for (i in 0 until 1000000) {
+//                    tmp++
+                    tmp.incrementAndGet()
+                }
+            }
+        }
+        val thread3 = object : Thread(){
+            override fun run() {
+                super.run()
+                for (i in 0 until 1000000) {
+//                    tmp++
+                    tmp.incrementAndGet()
+                }
+            }
+        }
+
+        thread1.start()
+        thread2.start()
+        thread3.start()
+        thread1.join()
+        thread2.join()
+        thread3.join()
+        println("最终值为：$tmp")
+    }
+
+    @Test
+    fun KtArrayTest() {
+        val array = arrayOf("1", 5, 6, 8)
+        println(array[2])
+        println(array.component2())
+        array.reverse() //反转
+        for (e in array) {
+            print("$e \t")
+        }
+    }
+
+    @Test
+    fun KtListOrSetOrMapTest() {
+        //kt 中集合分为可变和不可变集合
+        val array = arrayOf(1, 2, 3, "4", "5")
+        val list1 = listOf(1, 2, "3", 4)
+        val list2 = listOf<String>("a", "b", "c", "d") //确定类型集合
+        val list3 = listOf(array)
+
+
     }
 }
