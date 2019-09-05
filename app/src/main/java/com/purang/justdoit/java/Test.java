@@ -14,6 +14,7 @@ import java.util.Observer;
 public class Test {
 
 
+    private static final String TAG = Test.class.getSimpleName();
     class Hosse extends Observable{
 
         private double price;

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingBottom="8dp"
+            android:background="@color/colorAccent"
+            android:paddingTop="8dp">
+
+
+    </RelativeLayout>
+
+    <!--表情页及以下区域-->
+    <com.purang.emojitest.widget.FuncLayout
+            android:id="@+id/ly_kvml"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone"
+            />
+</LinearLayout>
