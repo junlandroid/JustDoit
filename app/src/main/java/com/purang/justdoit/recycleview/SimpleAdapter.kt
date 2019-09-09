@@ -1,21 +1,28 @@
 package com.purang.justdoit.recycleview
 
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.purang.justdoit.R
+import java.util.zip.Inflater
 
-class SimpleAdapter : RecyclerView.Adapter<SimpleViewHolder>() {
+class SimpleAdapter(var mData: List<String>) : RecyclerView.Adapter<SimpleViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SimpleViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.grid_item, parent, false)
+        return SimpleViewHolder(view)
     }
 
     override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return mData.size
     }
 
     override fun onBindViewHolder(holder: SimpleViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder.tv.text = mData[position]
     }
 }
 
-class SimpleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+class SimpleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    var tv:TextView = itemView.findViewById(R.id.tv)
+}
