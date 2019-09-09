@@ -21,6 +21,18 @@ class SimpleAdapter(var mData: List<String>) : RecyclerView.Adapter<SimpleViewHo
     override fun onBindViewHolder(holder: SimpleViewHolder, position: Int) {
         holder.tv.text = mData[position]
     }
+
+    override fun getItemId(position: Int): Long {
+        return super.getItemId(position)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return super.getItemViewType(position)
+    }
+
+    override fun setHasStableIds(hasStableIds: Boolean) {
+        super.setHasStableIds(true)
+    }
 }
 
 class SimpleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
