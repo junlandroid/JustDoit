@@ -3,6 +3,8 @@ package com.purang.justdoit.custom_view
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
+import android.util.Log
+import android.view.MotionEvent
 import android.widget.ImageView
 import com.purang.justdoit.R
 
@@ -35,11 +37,30 @@ class CircleImageView(context: Context, attributeSet: AttributeSet?, defStyleAtt
         canvas.drawRoundRect(RectF(0f, 0f, src.width.toFloat(), src.height.toFloat()), 80f, 80f, paint)
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas!!.drawBitmap(src, 0f, 0f, paint)
+        
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
+    override fun setOnLongClickListener(l: OnLongClickListener?) {
+        super.setOnLongClickListener(l)
+        Log.d(TAG, "setOnLongClickListener")
+    }
 
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        Log.d(TAG, "onTouchEvent")
+        when (event!!.action) {
+            MotionEvent.ACTION_DOWN -> Log.d(TAG, "ACTION_DOWN")
+            MotionEvent.ACTION_UP -> Log.d(TAG, "ACTION_UP")
+            MotionEvent.ACTION_CANCEL -> Log.d(TAG, "ACTION_CANCEL")
+        }
+        return super.onTouchEvent(event)
+    }
 
+    override fun setOnClickListener(l: OnClickListener?) {
+        super.setOnClickListener(l)
+        Log.d(TAG, "setOnClickListener")
+    }
+
+    companion object {
+        private const val TAG: String = "CircleImageView"
     }
 }

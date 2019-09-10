@@ -44,30 +44,30 @@ open class EmoticonPacksAdapter(val packList: List<EmotionPack<out Emotion>>): P
         return count
     }
 
-    override fun instantiateItem(container: ViewGroup, position: Int): Any? {
-        var pageNumber = position
-        var pack: EmotionPack<*>? = null
-
-        for (emoticonPack in packList) {
-            if (emoticonPack.pageCount > pageNumber) {
-                pack = emoticonPack
-                break
-            } else {
-                pageNumber -= emoticonPack.pageCount
-            }
-        }
-
-        // 返回viewPager展示的页面
-        val view = pack?.getView(container.context, pageNumber, clickListener)
-        view?.tag = position
-        container.addView(view)
-
-        pack?.isDataChanged = false
-
-        isUpdateAll = false
-
-        return view
-    }
+//    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+//        var pageNumber = position
+//        var pack: EmotionPack<*>? = null
+//
+//        for (emoticonPack in packList) {
+//            if (emoticonPack.pageCount > pageNumber) {
+//                pack = emoticonPack
+//                break
+//            } else {
+//                pageNumber -= emoticonPack.pageCount
+//            }
+//        }
+//
+//        // 返回viewPager展示的页面
+//        val view = pack?.getView(container.context, pageNumber, clickListener)
+//        view?.tag = position
+//        container.addView(view)
+//
+//        pack?.isDataChanged = false
+//
+//        isUpdateAll = false
+//
+//        return view
+//    }
 
     private fun getEmotionPack(position: Int) : EmotionPack<*>? {
         var pageNumber = position
@@ -93,26 +93,26 @@ open class EmoticonPacksAdapter(val packList: List<EmotionPack<out Emotion>>): P
     }
 
 
-    override fun getItemPosition(obj: Any?): Int {
-
-        if (isUpdateAll) {
-            return POSITION_NONE
-        }
-
-        if (packList.isEmpty()) {
-            return POSITION_NONE
-        }
-
-        if (obj is View) {
-            val pack = getEmotionPack(obj.tag as Int)
-
-            if (pack != null && pack.isDataChanged) {
-                return POSITION_NONE
-            }
-        }
-
-        return POSITION_UNCHANGED
-    }
+//    override fun getItemPosition(obj: Any?): Int {
+//
+//        if (isUpdateAll) {
+//            return POSITION_NONE
+//        }
+//
+//        if (packList.isEmpty()) {
+//            return POSITION_NONE
+//        }
+//
+//        if (obj is View) {
+//            val pack = getEmotionPack(obj.tag as Int)
+//
+//            if (pack != null && pack.isDataChanged) {
+//                return POSITION_NONE
+//            }
+//        }
+//
+//        return POSITION_UNCHANGED
+//    }
 
     override fun notifyDataSetChanged() {
         super.notifyDataSetChanged()

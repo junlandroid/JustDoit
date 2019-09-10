@@ -18,11 +18,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val simpleAdapter = SimpleAdapter()
-        simpleAdapter.notifyDataSetChanged()
-
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.adapter = simpleAdapter
+//        val simpleAdapter = SimpleAdapter()
+//        simpleAdapter.notifyDataSetChanged()
+//
+//        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+//        recyclerView.adapter = simpleAdapter
 
     }
 
