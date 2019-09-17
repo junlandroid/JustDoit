@@ -71,6 +71,7 @@ public class Test {
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
         }
+
     }
 
     class MyActivity extends AppCompatActivity{
@@ -78,9 +79,14 @@ public class Test {
         protected void onCreate(@Nullable Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
-            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+//            RecyclerView recyclerView = findViewById(R.id.recyclerView);
+
+
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println("-10.4的绝对值是："+Math.abs(-10.4));
+    }
 
 }
